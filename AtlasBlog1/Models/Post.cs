@@ -23,6 +23,7 @@ namespace AtlasBlog1.Models
         [StringLength(100, ErrorMessage = "The {0} must be atleast {2} and at most {1} characters long", MinimumLength = 5)]
         public string Abstract { get; set; } = "";
 
+        [Required]
         [Display(Name = "Post State" )]
         public PostState PostState { get; set; }
 
@@ -34,7 +35,7 @@ namespace AtlasBlog1.Models
         public DateTime? Updated { get; set; }
 
         //Navigation Properies
-        public Blog Blog { get; set; }
+        public Blog? Blog { get; set; }
 
 
     }
