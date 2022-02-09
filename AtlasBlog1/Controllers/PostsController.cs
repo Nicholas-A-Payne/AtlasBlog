@@ -58,10 +58,13 @@ namespace AtlasBlog1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BlogId,Title,Slug,IsDeleted,Abstract,PostState,Body,Created,Updated")] Post post)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,PostState,Body")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.Created = DateTime.UtcNow;
+
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
