@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<AtlasBlog1.Models.Post>
 
+@using AtlasBlog1.Services.Interfaces
+@inject IImageService _imageService
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,6 +15,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -39,6 +45,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

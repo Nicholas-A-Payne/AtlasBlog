@@ -1,4 +1,9 @@
-﻿@model IEnumerable<AtlasBlog1.Models.Blog>
+﻿@using AtlasBlog1.Models
+@using AtlasBlog1.Services.Interfaces
+
+@model IEnumerable<Blog>
+
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +17,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.BlogName)
             </th>
@@ -29,7 +37,13 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr>
+                <td>
+                    @if (item.ImageData is not null)
+                    {
+                        <img class="img-fluid" src="@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType)">
+                    }
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BlogName)
             </td>

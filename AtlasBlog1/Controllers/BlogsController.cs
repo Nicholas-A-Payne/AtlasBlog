@@ -21,6 +21,7 @@ namespace AtlasBlog1.Controllers
                                 IImageService imageService)
         {
             _context = context;
+            _imageService = imageService; 
         }
 
         // GET: Blogs
