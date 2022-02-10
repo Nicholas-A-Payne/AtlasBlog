@@ -22,7 +22,7 @@ namespace AtlasBlog1.Models
 
         //I want to store an Image for this Blog
         [Display(Name = "Image" )]
-        public byte[]? ImageData { get; set; } = Array.Empty<byte>();
+        public byte[] ImageData { get; set; } = Array.Empty<byte>();
         public string ImageType { get; set; } = "";
 
         //This model should have a list pf Posts children

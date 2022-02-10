@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AtlasBlog1.Data;
 using AtlasBlog1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AtlasBlog1.Controllers
 {
@@ -47,6 +48,7 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName");
@@ -74,6 +76,7 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -129,6 +132,7 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
