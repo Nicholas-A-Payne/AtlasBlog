@@ -95,7 +95,7 @@ namespace AtlasBlog1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,IsDeleted,Abstract,PostState,Body,Created,Updated")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,PostState,Body,Created")] Post post)
         {
             if (id != post.Id)
             {
@@ -106,6 +106,8 @@ namespace AtlasBlog1.Controllers
             {
                 try
                 {
+                    post.Updated = DateTime.UtcNow;
+                    post.Created = DateTime.SpecifyKind(post.Created, DateTimeKind.Utc);
                     _context.Update(post);
                     await _context.SaveChangesAsync();
                 }

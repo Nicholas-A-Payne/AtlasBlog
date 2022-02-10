@@ -99,6 +99,9 @@ namespace AtlasBlog1.Controllers
 
             if (ModelState.IsValid)
             {
+                //Specify the DateTime kind for the incoming Created Date
+                blog.Created = DateTime.UtcNow;
+
                 try
                 {
                     _context.Update(blog);
