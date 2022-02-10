@@ -8,14 +8,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AtlasBlog1.Data;
 using AtlasBlog1.Models;
+using AtlasBlog1.Services.Interfaces;
 
 namespace AtlasBlog1.Controllers
 {
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IImageService _imageService;
 
-        public BlogsController(ApplicationDbContext context)
+        public BlogsController(ApplicationDbContext context,
+                                IImageService imageService)
         {
             _context = context;
         }
@@ -55,10 +58,16 @@ namespace AtlasBlog1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogName,Description")] Blog blog)
+        public async Task<IActionResult> Create([Bind("BlogName,Description")] Blog blog, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
+                if(imageFile is not null)
+                {
+                    blog.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
+                    blog.ImageType = imageFile.ContentType;
+                }
+
                 //Specify the DateTime kind for the incoming Created Date
                 blog.Created = DateTime.UtcNow;
 

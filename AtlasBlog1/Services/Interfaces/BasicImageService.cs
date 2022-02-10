@@ -24,7 +24,7 @@
             try
             {
                 var imageBase64Data = Convert.ToBase64String(fileData);
-                return $"data{extension};base64,{imageBase64Data}";
+                return $"data:{extension};base64,{imageBase64Data}";
             }
             catch (Exception ex)
             {

@@ -20,6 +20,11 @@ namespace AtlasBlog1.Models
 
         public DateTime Update { get; set; }
 
+        //I want to store an Image for this Blog
+        [Display(Name = "Image" )]
+        public byte[]? ImageData { get; set; } = Array.Empty<byte>();
+        public string ImageType { get; set; } = "";
+
         //This model should have a list pf Posts children
         public ICollection<Post> Post { get; set; } = new HashSet<Post>();
 
