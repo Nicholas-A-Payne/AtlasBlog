@@ -10,28 +10,35 @@ using AtlasBlog1.Data;
 using AtlasBlog1.Models;
 using AtlasBlog1.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using AtlasBlog1.Services;
 
 namespace AtlasBlog1.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IImageService _imageService;
+        private readonly SlugService _slugService;
 
         public BlogsController(ApplicationDbContext context,
-                                IImageService imageService)
+                                IImageService imageService, 
+                                SlugService slugService)
         {
             _context = context;
-            _imageService = imageService; 
+            _imageService = imageService;
+            _slugService = slugService;
         }
 
         // GET: Blogs
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Blogs.ToListAsync());
         }
 
         // GET: Blogs/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -67,6 +74,7 @@ namespace AtlasBlog1.Controllers
             {
                 if(imageFile is not null)
                 {
+
                     blog.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
                     blog.ImageType = imageFile.ContentType;
                 }

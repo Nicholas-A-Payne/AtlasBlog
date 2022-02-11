@@ -9,16 +9,24 @@ using Microsoft.EntityFrameworkCore;
 using AtlasBlog1.Data;
 using AtlasBlog1.Models;
 using Microsoft.AspNetCore.Authorization;
+using AtlasBlog1.Services;
+using AtlasBlog1.Services.Interfaces;
 
 namespace AtlasBlog1.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IImageService _imageService;
+        private readonly SlugService _slugService;
 
-        public PostsController(ApplicationDbContext context)
+        public PostsController(ApplicationDbContext context, 
+                                SlugService slugService, 
+                                IImageService imageService)
         {
             _context = context;
+            _slugService = slugService;
+            _imageService = imageService;
         }
 
         // GET: Posts
@@ -64,6 +72,10 @@ namespace AtlasBlog1.Controllers
         {
             if (ModelState.IsValid)
             {
+                var slug = _slugService.UrlFriendly(post.Title, 100);
+
+                post.Slug = slug;
+
                 post.Created = DateTime.UtcNow;
 
 

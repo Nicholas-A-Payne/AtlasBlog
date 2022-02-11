@@ -15,6 +15,7 @@ namespace AtlasBlog1.Models
         [StringLength(100, ErrorMessage ="The {0} must be atleast {2} and at most {1} characters long", MinimumLength = 5)]
         public string Title { get; set; } = "";
 
+
         public string Slug { get; set; } = "";
 
         public bool IsDeleted { get; set; }
