@@ -37,16 +37,18 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string slug)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(slug))
             {
                 return NotFound();
             }
 
             var post = await _context.Posts
                 .Include(p => p.Blog)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Slug == slug);
+
+
             if (post == null)
             {
                 return NotFound();
@@ -56,7 +58,6 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Posts/Create
-        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName");
@@ -74,7 +75,20 @@ namespace AtlasBlog1.Controllers
             {
                 var slug = _slugService.UrlFriendly(post.Title, 100);
 
-                post.Slug = slug;
+                //Ensure the Slug is unique in the DB, if not than throw a custom error
+                var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
+
+                if (isUnipue)
+                {
+                    post.Slug = slug;
+                }
+                else
+                {
+                    ModelState.AddModelError("Title", "This title cannot be used (duplicate Slug)");
+                    ModelState.AddModelError("", "Incorrect title");
+                    ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+                    return View(post);
+                }
 
                 post.Created = DateTime.UtcNow;
 
@@ -110,7 +124,7 @@ namespace AtlasBlog1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,PostState,Body,Created")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,Abstract,PostState,Body,Created")] Post post)
         {
             if (id != post.Id)
             {
@@ -119,6 +133,26 @@ namespace AtlasBlog1.Controllers
 
             if (ModelState.IsValid)
             {
+                
+                var slug = _slugService.UrlFriendly(post.Title, 100);
+                if(post.Slug != slug)
+                {
+                    //Ensure the Slug is unique in the DB, if not than throw a custom error
+                    var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
+                    
+                    if (isUnipue)
+                    {
+                        post.Slug = slug;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Title", "This title cannot be used (duplicate Slug)");
+                        ModelState.AddModelError("", "Incorrect title");
+                        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+                        return View(post);
+                    }
+                }
+                
                 try
                 {
                     post.Updated = DateTime.UtcNow;
