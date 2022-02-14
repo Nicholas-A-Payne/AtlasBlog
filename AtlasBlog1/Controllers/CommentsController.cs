@@ -68,7 +68,7 @@ namespace AtlasBlog1.Controllers
                 return RedirectToAction("Details", "Posts", new { slug } );
             }
 
-            return RedirectToAction("Details", "Posts", new { slug } );
+            return RedirectToAction("Details", "Posts", new { slug }, "CommentSection" );
         }
 
         // GET: Comments/Edit/5

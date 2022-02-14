@@ -10,58 +10,58 @@
     <h4>Post</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Slug)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Slug)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IsDeleted)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IsDeleted)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Abstract)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Abstract)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PostState)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PostState)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Body)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Body)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Created)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Created)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Updated)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Updated)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Blog)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Blog.BlogName)
         </dd>
     </dl>
@@ -74,15 +74,40 @@
     //Present a simple form for collecting the comment
     <form asp-controller="Comments" asp-action="Create">
         <input type="hidden" name="PostId" value=@Model.Id>
-        <input type="hidden" asp-for="Slug" >
-        <textarea class="form-control" name="CommentBody" rows=10 placeholder="Add Comment" ></textarea>
+        <input type="hidden" asp-for="Slug">
+        <textarea class="form-control" name="CommentBody" rows=10 placeholder="Add Comment"></textarea>
         <button class="btn btn-dark">SUBMIT</button>
     </form>
 }
 else
 {
-    <a asp-area="Identity" asp-page="/Account/Login" >Please Register/Login to Leave a comment</a>
+    <a class="nav-link text-dark fw-bold text-black" asp-route-returnUrl="@Url.Action("Details", "Posts", new{slug = Model.Slug})" asp-area="Identity" asp-page="/Account/Login">Please Register/Login to Leave a comment</a>
 }
+
+<hr />
+
+<div class="container">
+    <div class="row" id="CommentSection">
+        @foreach (var comment in Model.Comments.OrderByDescending(c => c.CreatedDate))
+        {
+            <div class="col-12 my-2">
+                <div class="card border-dark mb-3 w-100">
+                    <div class="card-header">
+                        <span class="float-start">Created by: @comment.Author?.FullName</span>
+                        <span class="float-end">Created by: @comment.CreatedDate.ToString("MMM dd, yyyy")</span>
+                        </div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">@comment.CommentBody</h5>
+                    </div>
+                    @*<div class="card-footer">Posted on: @comment.CreatedDate.ToString("MMM dd, yyyy")</div>*@
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
