@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6cH3xcp3TVMoFbKcjLlg8PB8f7mu91nmKVpPrmNLVKs=",
+  "Hash": "u3f12A6TGGhrmF+K2T1iDk1aJxTxwmU4XwPxVyrYHKs=",
   "Source": "AtlasBlog1",
   "BasePath": "_content/AtlasBlog1",
   "Mode": "Default",
@@ -1088,6 +1088,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\css\\styles.css",
+      "SourceId": "AtlasBlog1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\",
+      "BasePath": "_content/AtlasBlog1",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
       "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\favicon.ico",
       "SourceId": "AtlasBlog1",
       "SourceType": "Discovered",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\js\\scripts.js",
+      "SourceId": "AtlasBlog1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\",
+      "BasePath": "_content/AtlasBlog1",
+      "RelativePath": "js/scripts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\scripts.js"
     },
     {
       "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\js\\site.js",

@@ -71,10 +71,10 @@ namespace AtlasBlog1.Services
                 
                 user = new()
                 {
-                    UserName = "DrewRussell@Mailinator.com",
-                    Email = "DrewRussell@Mailinator.com",
-                    FirstName = "Drew",
-                    LastName = "Russel",
+                    UserName = "John117@UNSC.gov",
+                    Email = "John117@UNSC.gov",
+                    FirstName = "Master",
+                    LastName = "Chief",
                     DisplayName = "Prof 2",
                     PhoneNumber = "666777888",
                     EmailConfirmed = true

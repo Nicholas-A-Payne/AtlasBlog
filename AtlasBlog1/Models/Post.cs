@@ -35,8 +35,11 @@ namespace AtlasBlog1.Models
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
 
-        //Navigation Properies
+        //Navigation Properties
         public Blog? Blog { get; set; }
+
+        //Comments
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
 
     }

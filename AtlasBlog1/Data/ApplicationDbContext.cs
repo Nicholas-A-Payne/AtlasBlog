@@ -13,6 +13,7 @@ namespace AtlasBlog1.Data
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<AtlasBlog1.Models.Comment> Comment { get; set; }
 
 
 
