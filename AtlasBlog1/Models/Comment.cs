@@ -6,7 +6,7 @@
         public int PostId { get; set; }
 
         //Need to refrence the comment author
-        public string AuthorId { get; set; }
+        public string? AuthorId { get; set; }
 
 
 

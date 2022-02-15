@@ -61,11 +61,10 @@ namespace AtlasBlog1.Controllers
         {
             if (ModelState.IsValid)
             {
-                comment.AuthorId =  _userManager.GetUserId(User);
+                comment.AuthorId = _userManager.GetUserId(User);
                 comment.CreatedDate = DateTime.UtcNow;
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Posts", new { slug } );
             }
 
             return RedirectToAction("Details", "Posts", new { slug }, "CommentSection" );

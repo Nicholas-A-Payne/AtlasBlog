@@ -1,3 +1,46 @@
+/*---------------------------------------------------------------------
+# Root
+--------------------------------------------------------------------*/
+
+:root {
+    --NP-dark-color: #212121;
+    --NP-light-color: #eeee;
+    --NP-primary-color: #5208b9;
+    --NP-secondary-color: #8f028f;
+}
+
+/*-------------------------------------------------------------------
+# Button Primary remap
+--------------------------------------------------------------------*/
+
+.btn-outline-primary {
+    color: var(--NP-dark-color);
+    border-color: var(--NP-secondary-color) !important;
+}
+
+    .btn-outline-primary:hover,
+    .btn-outline-primary:active,
+    .btn-outline-primary:focus {
+        border-color: var(--NP-primary-color) !important;
+        background-color: var(--NP-secondary-color);
+    }
+
+.btn-primary {
+    color: white !important;
+    background-color: var(--NP-secondary-color) !important;
+    border: var(--NP-primary-color) !important;
+}
+
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited,
+    .btn-primary:focus {
+        filter: brightness(1.1) !important;
+        border-color: var(--NP-primary-color) !important;
+        background-color: var(--NP-secondary-color);
+    }
+
+
 html {
   font-size: 20px;
 }
