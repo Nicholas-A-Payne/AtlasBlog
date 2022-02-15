@@ -71,40 +71,45 @@ namespace AtlasBlog1.Controllers
         }
 
         // GET: Comments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var comment = await _context.Comment.FindAsync(id);
-            if (comment == null)
-            {
-                return NotFound();
-            }
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", comment.AuthorId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Abstract", comment.PostId);
-            return View(comment);
-        }
+        //    var comment = await _context.Comment.FindAsync(id);
+        //    if (comment == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", comment.AuthorId);
+        //    ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Abstract", comment.PostId);
+        //    return View(comment);
+        //}
 
         // POST: Comments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,AuthorId,CommentBody,CreatedDate,UpdatedDate,IsDeleted")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CommentBody")] Comment comment, string slug)
         {
             if (id != comment.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    _context.Update(comment);
+                   var commentSnapShot = await _context.Comment.FindAsync(comment.Id);
+                    if(commentSnapShot == null)
+                    {
+                        return NotFound();
+                    }
+
+                    commentSnapShot.CommentBody = comment.CommentBody;
+                    commentSnapShot.UpdatedDate = DateTime.UtcNow;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -118,11 +123,8 @@ namespace AtlasBlog1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", comment.AuthorId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Abstract", comment.PostId);
-            return View(comment);
+            
+            return RedirectToAction("Details", "Posts", new { slug }, "CommentSection");
         }
 
         // GET: Comments/Delete/5

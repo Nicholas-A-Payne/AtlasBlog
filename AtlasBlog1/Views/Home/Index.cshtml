@@ -22,8 +22,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
-
-            @foreach(var blog in Model)
+            @*@foreach(var blog in Model)
             {                
                 <div class="post-preview">
                     <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
@@ -31,10 +30,10 @@
                         <h3 class="post-subtitle">@blog.Description</h3>
                     </a>
                     <p class="post-meta">
-                        Created By Jason M Twichell on @blog.Created.ToString("MMM dd, yyyy")
+                        Created By Nicholas Payne on @blog.Created.ToString("MMM dd, yyyy")
                     </p>
                 </div>
-            }
+            }*@
 
                 <!-- Divider-->
                 <hr class="my-4" />

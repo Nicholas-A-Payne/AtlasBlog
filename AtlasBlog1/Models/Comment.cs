@@ -12,8 +12,8 @@
 
 
         public string CommentBody { get; set; } = "";
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedDate { get; set; } = DateTime.UtcNow;
         public bool IsDeleted { get; set; }
 
 

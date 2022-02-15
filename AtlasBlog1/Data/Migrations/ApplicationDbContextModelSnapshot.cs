@@ -143,7 +143,6 @@ namespace AtlasBlog1.Data.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AuthorId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("CommentBody")
@@ -355,9 +354,7 @@ namespace AtlasBlog1.Data.Migrations
                 {
                     b.HasOne("AtlasBlog1.Models.AppUser", "Author")
                         .WithMany("Comments")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("AtlasBlog1.Models.Post", "Post")
                         .WithMany("Comments")
