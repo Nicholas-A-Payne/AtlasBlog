@@ -152,10 +152,10 @@ namespace AtlasBlog1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var comment = await _context.Comment.FindAsync(id);
+            var comment = await _context.Comment.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
             _context.Comment.Remove(comment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Posts", new {slug = comment.Post.Slug }, "CommentSection");
         }
 
         private bool CommentExists(int id)

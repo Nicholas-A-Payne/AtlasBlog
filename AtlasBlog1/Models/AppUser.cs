@@ -17,7 +17,5 @@ namespace AtlasBlog1.Models
             }
         }
         public string? DisplayName { get; set; }
-
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
     }
 }
