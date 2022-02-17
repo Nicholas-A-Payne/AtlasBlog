@@ -1,6 +1,6 @@
 ﻿namespace AtlasBlog1.Enums
 {
-    public enum ModerationReason
+    public enum ModType
     {
         Language,
         Bullying,

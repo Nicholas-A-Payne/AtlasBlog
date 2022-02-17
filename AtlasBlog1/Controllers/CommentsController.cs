@@ -127,6 +127,51 @@ namespace AtlasBlog1.Controllers
             return RedirectToAction("Details", "Posts", new { slug }, "CommentSection");
         }
 
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Moderate(int id, [Bind("Id,ModBody,ModType")] Comment comment)
+        {
+            if (id != comment.Id)
+            {
+                return NotFound();
+            }
+
+            Comment commentSnapShot = new();
+            try
+            {
+                //var commentSnapShot = await _context.Comments.FindAsync(comment.Id);
+                commentSnapShot = await _context.Comment
+                                                    .Include(c => c.Post)
+                                                    .FirstOrDefaultAsync(c => c.Id == comment.Id);
+
+                if (commentSnapShot == null)
+                {
+                    return NotFound();
+                }
+
+                commentSnapShot.ModDate = DateTime.UtcNow;
+                commentSnapShot.ModBody = comment.ModBody;
+                commentSnapShot.ModType = comment.ModType;
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CommentExists(comment.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", "Posts", new { slug = commentSnapShot.Post.Slug }, "CommentSection");
+        }
+
         // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

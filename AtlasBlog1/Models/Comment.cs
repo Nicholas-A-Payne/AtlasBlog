@@ -17,10 +17,8 @@ namespace AtlasBlog1.Models
 
         //Moderator Properties
         public DateTime? ModDate { get; set; }
-        public ModerationReason ModType { get; set; }
+        public ModType ModType { get; set; }
         public string? ModBody { get; set; }
-
-
 
         //Navigation property that is "lazy loaded"
         public virtual Post? Post { get; set; }
