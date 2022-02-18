@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u1FcjAY59/lI83IN9PR1oDcF06p2R+JXrAkRIoaSH0XW+vQ2fvso2ZF+LRfpTpe7EKklMgWKDe1PZ8AEFsAT6w==",
+  "dgSpecHash": "otwq9In+cdEu8ky1ndj7R4uGZ2DGs64X1LEwpq4WvKj3NE+NkpotX9pDmHOqN34HdjN3GzRHre0z/XFJh0yzRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\AtlasBlog1.csproj",
   "expectedPackageFiles": [
@@ -187,7 +187,8 @@
     "C:\\Users\\nicho\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\nicho\\.nuget\\packages\\x.pagedlist\\8.1.0\\x.pagedlist.8.1.0.nupkg.sha512"
+    "C:\\Users\\nicho\\.nuget\\packages\\x.pagedlist\\8.1.0\\x.pagedlist.8.1.0.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\x.pagedlist.mvc.core\\8.1.0\\x.pagedlist.mvc.core.8.1.0.nupkg.sha512"
   ],
   "logs": []
 }

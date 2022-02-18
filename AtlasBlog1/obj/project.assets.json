@@ -3218,6 +3218,21 @@
         "runtime": {
           "lib/netstandard2.0/X.PagedList.dll": {}
         }
+      },
+      "X.PagedList.Mvc.Core/8.1.0": {
+        "type": "package",
+        "dependencies": {
+          "X.PagedList": "8.1.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -9965,6 +9980,18 @@
         "x.pagedlist.8.1.0.nupkg.sha512",
         "x.pagedlist.nuspec"
       ]
+    },
+    "X.PagedList.Mvc.Core/8.1.0": {
+      "sha512": "Nqz9rSjU/St77F25GV8TogDfkVsbErC0o6o8hJtkkXrAilXHjsEALRMn8eVhgAFJ3XFWvvaHHSiDN3SnTGWSEA==",
+      "type": "package",
+      "path": "x.pagedlist.mvc.core/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll",
+        "x.pagedlist.mvc.core.8.1.0.nupkg.sha512",
+        "x.pagedlist.mvc.core.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -9976,7 +10003,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.3",
-      "X.PagedList >= 8.1.0"
+      "X.PagedList.Mvc.Core >= 8.1.0"
     ]
   },
   "packageFolders": {
@@ -10048,7 +10075,7 @@
             "target": "Package",
             "version": "[6.0.3, )"
           },
-          "X.PagedList": {
+          "X.PagedList.Mvc.Core": {
             "target": "Package",
             "version": "[8.1.0, )"
           }

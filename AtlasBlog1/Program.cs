@@ -29,6 +29,8 @@ builder.Services.AddScoped<IImageService, BasicImageService>();
 
 builder.Services.AddTransient<SlugService>();
 
+builder.Services.AddTransient<SearchService>();
+
 
 var app = builder.Build();
 

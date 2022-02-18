@@ -1,45 +1,73 @@
 ﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
 @using AtlasBlog1.Models
+@using X.PagedList.Web.Common
+@using AtlasBlog1.Services.Interfaces
+
+@inject IImageService _imageService
+
 @model IPagedList<Blog>
 
-<!-- Page Header-->
-<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>Developer Blog</h1>
-                    <span class="subheading">A Blog site made by Nicholas Payne</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @foreach (var blog in Model)
+                {
 
-           @foreach(var blog in Model)
-            {                
-                <div class="post-preview">
-                    <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
-                        <h2 class="post-title">@blog.BlogName</h2>
-                        <h3 class="post-subtitle">@blog.Description</h3>
-                    </a>
-                    <p class="post-meta">
-                        Created By Nicholas Payne on @blog.Created.ToString("MMM dd, yyyy")
-                    </p>
-                </div>
+                    <div class="col">
+                        <div class="card">
+                            @if (blog.ImageData is not null)
+                            {
+                                <img class="card-img-top img-fluid" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
+                            }
+                        </div>
+                        <div class="card-body">
+                            <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
+                                <h2 class="post-title">@blog.BlogName</h2>
+                                <h3 class="post-subtitle">@blog.Description</h3>
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <p class="post-meta">
+                                Created By Nicholas Payne on @blog.Created.ToString("MMM dd, yyyy")
+                            </p>
+                        </div>
+                    </div>
 
-                <!-- Divider-->
-                <hr class="my-4" />
-            }
+
+
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                }
+            </div>
 
             <!-- Pager-->
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">All Posts →</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        @*Now I can Start building out the paging mechanism*@
+        <div class="row">
+            <div class="col h3">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum }),
+                new PagedListRenderOptions
+                {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+                })
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,49 @@
+﻿@using AtlasBlog1.Services.Interfaces
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@inject IImageService _imageService
+@model IPagedList<Post>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    @foreach (var post in Model)
+    {
+            <div class="col">
+                <div class="card h-100">
+                   @* @if (post.ImageData is not null)
+                    {
+                        <img class="img-fluid" src="@_imageService.ConvertByteArrayToFile(post.ImageData, post.ImageType)">
+                    }*@
+                    <div class="card-body">
+                        <h5 class="card-title">@post.Title</h5>
+                        <p class="card-text h6">@post.Abstract</p>
+                         <h5 class="card-title text-muted h6 fst-italic" >Created: @post.Created.ToString("MMM dd, yyyy")</h5>
+                    </div>
+                    <div class="card-footer" >
+                     <a asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug" class="btn btn-primary fw-bold w-100" >Read Blog</a> 
+                    </div>
+                </div>
+            </div>
+            
+    }
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col h3">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        @Html.PagedListPager(Model, pageNum => Url.Action("SearchIndex", new { pageNum, searchTerm = ViewBag.SearchTerm }),
+            new PagedListRenderOptions
+            {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+            })
+    </div>
+</div>

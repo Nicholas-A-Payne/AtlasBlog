@@ -11,6 +11,7 @@ using AtlasBlog1.Models;
 using Microsoft.AspNetCore.Authorization;
 using AtlasBlog1.Services;
 using AtlasBlog1.Services.Interfaces;
+using X.PagedList;
 
 namespace AtlasBlog1.Controllers
 {
@@ -19,14 +20,17 @@ namespace AtlasBlog1.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IImageService _imageService;
         private readonly SlugService _slugService;
+        private readonly SearchService _searchService;
 
         public PostsController(ApplicationDbContext context,
                                 SlugService slugService,
-                                IImageService imageService)
+                                IImageService imageService,                               
+                                SearchService searchService)
         {
             _context = context;
             _slugService = slugService;
             _imageService = imageService;
+            _searchService = searchService;
         }
 
         // GET: Posts
@@ -188,6 +192,21 @@ namespace AtlasBlog1.Controllers
         ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
         return View(post);
     }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> SearchIndex(int? pageNum, string SearchItem)
+        {
+            pageNum ??= 1;
+            var pageSize = 5;
+
+            //I am going to use a search service to get all of the Posts that contain the SearchItem
+            var posts = _searchService.ItemSearch(SearchItem);
+            var pagedPosts = await posts.ToPagedListAsync(pageNum, pageSize);
+
+            ViewData["SearchItem"] = SearchItem;
+            return View(pagedPosts);
+        }
+
 
     // GET: Posts/Delete/5
     [Authorize(Roles = "Administrator")]
