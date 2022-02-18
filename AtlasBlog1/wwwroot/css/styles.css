@@ -3843,7 +3843,7 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: #0085A1;
+  color: var(--NP-secondary-color);
 }
 .nav-link.disabled {
   color: #6c757d;
@@ -3860,7 +3860,7 @@ textarea.form-control-lg {
   border: 1px solid transparent;
 }
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  border-color: #e9ecef #e9ecef #dee2e6;
+  border-color: var(--NP-light-color);
   isolation: isolate;
 }
 .nav-tabs .nav-link.disabled {
@@ -3870,9 +3870,9 @@ textarea.form-control-lg {
 }
     .nav-tabs .nav-link.active,
     .nav-tabs .nav-item.show .nav-link {
-        color: #495057;
+        color: var(--NP-dark-color);
         background-color: var(--NP-dark-color);
-        border-color: #dee2e6 #dee2e6 #fff;
+        border-color: var(--NP-light-color);
     }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -3937,8 +3937,8 @@ textarea.form-control-lg {
 .navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
+  margin-right: .3rem;
+  font-size: 2.25rem;
   white-space: nowrap;
 }
 .navbar-nav {
@@ -3971,7 +3971,7 @@ textarea.form-control-lg {
   padding: 0.25rem 0.75rem;
   font-size: 1.25rem;
   line-height: 1;
-  background-color: transparent;
+  background-color: var(--NP-dark-color);
   border: 1px solid transparent;
   transition: box-shadow 0.15s ease-in-out;
 }
@@ -4038,7 +4038,7 @@ textarea.form-control-lg {
     z-index: 1000;
     flex-grow: 1;
     visibility: visible !important;
-    background-color: transparent;
+    background-color: var(--NP-dark-color);
     border-right: 0;
     border-left: 0;
     transition: none;
@@ -4070,7 +4070,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-md .navbar-nav .nav-link {
     padding-right: 0.5rem;
-    padding-left: 0.5rem;
+
   }
   .navbar-expand-md .navbar-nav-scroll {
     overflow: visible;
@@ -4091,7 +4091,7 @@ textarea.form-control-lg {
     z-index: 1000;
     flex-grow: 1;
     visibility: visible !important;
-    background-color: transparent;
+    background-color: var(--NP-dark-color);
     border-right: 0;
     border-left: 0;
     transition: none;
@@ -4123,7 +4123,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0.5rem;
-    padding-left: 0.5rem;
+
   }
   .navbar-expand-lg .navbar-nav-scroll {
     overflow: visible;
@@ -4144,7 +4144,7 @@ textarea.form-control-lg {
     z-index: 1000;
     flex-grow: 1;
     visibility: visible !important;
-    background-color: transparent;
+    background-color: var(--NP-dark-color);
     border-right: 0;
     border-left: 0;
     transition: none;
@@ -4176,7 +4176,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-xl .navbar-nav .nav-link {
     padding-right: 0.5rem;
-    padding-left: 0.5rem;
+
   }
   .navbar-expand-xl .navbar-nav-scroll {
     overflow: visible;
@@ -4197,7 +4197,7 @@ textarea.form-control-lg {
     z-index: 1000;
     flex-grow: 1;
     visibility: visible !important;
-    background-color: transparent;
+    background-color: var(--NP-dark-color);
     border-right: 0;
     border-left: 0;
     transition: none;
@@ -4229,7 +4229,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-xxl .navbar-nav .nav-link {
     padding-right: 0.5rem;
-    padding-left: 0.5rem;
+
   }
   .navbar-expand-xxl .navbar-nav-scroll {
     overflow: visible;
@@ -4250,7 +4250,7 @@ textarea.form-control-lg {
     z-index: 1000;
     flex-grow: 1;
     visibility: visible !important;
-    background-color: transparent;
+    background-color: var(--NP-dark-color);
     border-right: 0;
     border-left: 0;
     transition: none;
@@ -4281,7 +4281,6 @@ textarea.form-control-lg {
 }
 .navbar-expand .navbar-nav .nav-link {
   padding-right: 0.5rem;
-  padding-left: 0.5rem;
 }
 .navbar-expand .navbar-nav-scroll {
   overflow: visible;
@@ -4302,7 +4301,7 @@ textarea.form-control-lg {
   z-index: 1000;
   flex-grow: 1;
   visibility: visible !important;
-  background-color: transparent;
+  background-color: var(--NP-dark-color);
   border-right: 0;
   border-left: 0;
   transition: none;

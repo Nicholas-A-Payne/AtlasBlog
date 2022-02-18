@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "puTRq1C2gx3bW5EjyLw1PvjRZ47F8NcoUBBPg09zeaw=",
+  "Hash": "V0Lz71bfwQUC42nJyQ1dC8hvrrppi0iRvweOWy4XaEk=",
   "Source": "AtlasBlog1",
   "BasePath": "_content/AtlasBlog1",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\Img\\Corvid-Purple-White.PNG",
+      "SourceId": "AtlasBlog1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\",
+      "BasePath": "_content/AtlasBlog1",
+      "RelativePath": "Img/Corvid-Purple-White.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Img\\Corvid-Purple-White.PNG"
     },
     {
       "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\js\\scripts.js",

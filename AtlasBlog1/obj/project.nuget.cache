@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "OSW++qwcDDnZdgSJgXVZnvN2e9znRuOfWQtT2Slh5d2r/o1EG1TsKkVm/F9GJJ9zWt9SoK93QARFY2jct1eNOg==",
+  "dgSpecHash": "u1FcjAY59/lI83IN9PR1oDcF06p2R+JXrAkRIoaSH0XW+vQ2fvso2ZF+LRfpTpe7EKklMgWKDe1PZ8AEFsAT6w==",
   "success": true,
   "projectFilePath": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\AtlasBlog1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nicho\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\jetbrains.annotations\\2021.1.0\\jetbrains.annotations.2021.1.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
@@ -185,7 +186,8 @@
     "C:\\Users\\nicho\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\nicho\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\nicho\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\x.pagedlist\\8.1.0\\x.pagedlist.8.1.0.nupkg.sha512"
   ],
   "logs": []
 }
