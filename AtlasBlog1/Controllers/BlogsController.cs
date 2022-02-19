@@ -111,8 +111,9 @@ namespace AtlasBlog1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogName,Description,Created,Update")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogName,Description,Created,Update")] Blog blog, IFormFile imageFile)
         {
+
             if (id != blog.Id)
             {
                 return NotFound();
@@ -120,6 +121,13 @@ namespace AtlasBlog1.Controllers
 
             if (ModelState.IsValid)
             {
+                if (imageFile is not null)
+                {
+
+                    blog.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
+                    blog.ImageType = imageFile.ContentType;
+                }
+
                 //Specify the DateTime kind for the incoming Created Date
                 blog.Created = DateTime.UtcNow;
 

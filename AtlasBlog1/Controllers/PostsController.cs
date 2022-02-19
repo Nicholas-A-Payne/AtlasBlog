@@ -85,11 +85,18 @@ namespace AtlasBlog1.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,PostState,Body")] Post post)
+    public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,PostState,Body")] Post post, IFormFile imageFile)
     {
         if (ModelState.IsValid)
         {
-            var slug = _slugService.UrlFriendly(post.Title, 100);
+                if (imageFile is not null)
+                {
+
+                    post.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
+                    post.ImageType = imageFile.ContentType;
+                }
+
+                var slug = _slugService.UrlFriendly(post.Title, 100);
 
             //Ensure the Slug is unique in the DB, if not than throw a custom error
             var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
@@ -140,7 +147,7 @@ namespace AtlasBlog1.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,Abstract,PostState,Body,Created")] Post post)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,Abstract,PostState,Body,Created")] Post post, IFormFile imageFile)
     {
         if (id != post.Id)
         {
@@ -149,8 +156,14 @@ namespace AtlasBlog1.Controllers
 
         if (ModelState.IsValid)
         {
+                if (imageFile is not null)
+                {
 
-            var slug = _slugService.UrlFriendly(post.Title, 100);
+                    post.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
+                    post.ImageType = imageFile.ContentType;
+                }
+
+                var slug = _slugService.UrlFriendly(post.Title, 100);
             if (post.Slug != slug)
             {
                 //Ensure the Slug is unique in the DB, if not than throw a custom error
