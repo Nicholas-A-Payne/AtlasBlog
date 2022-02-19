@@ -15,72 +15,38 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
+@foreach (var item in Model)
+{
+    <div class="row g-0 h-100">
+        <div class="col-md-4">
+            <img src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />
+        </div>
+        <div class="col-md-8" > 
+            <div class="card-body">
+                <div class="card-title" > <h5>@Html.DisplayFor(modelItem => item.Title) || @item.Created.ToString("MMM dd, yyyy")</h5></div>
+                <div class="card-text" >@Html.DisplayFor(modelItem => item.Abstract)</div>
+                <div class="card-text"> @Html.Raw(item.Body) </div>
+                <div class="card-footer">
+                    <div class="row" >
+                        <div class="col-md-6" > @Html.DisplayFor(modelItem => item.PostState)</div>
+                        <div class="col-md-6" >
+                             @if (User.IsInRole("Administrator"))
+                             {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                             }
 
-            <th>
-                Created
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Abstract)
-            </th>
+                            <a asp-action="Details" asp-route-slug="@item.Slug">Details</a>
 
-            <th>
-                @Html.DisplayNameFor(model => model.PostState)
-            </th>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                      </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @item.Created.ToString("MMM dd, yyyy")
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Abstract)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostState)
-                </td>
-                <td>
-                    @Html.Raw(item.Body)
-                </td>
-                
-                <td>
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    }
-                   
-                    <a asp-action="Details" asp-route-slug="@item.Slug">Details</a> 
-                    
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
