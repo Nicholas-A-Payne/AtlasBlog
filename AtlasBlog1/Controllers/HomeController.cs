@@ -24,7 +24,7 @@ namespace AtlasBlog1.Controllers
             pageNum ??=  1;
             //ToPagedList always needs to know what page to render
             //PagedLists always need to be ordered explicitly
-            var blogs = await _context.Blogs.OrderByDescending(b => b.Created).ToPagedListAsync(pageNum, 5);
+            var blogs = await _context.Blogs.OrderByDescending(b => b.Created).ToPagedListAsync(pageNum, 3);
             
             return View(blogs);
         }

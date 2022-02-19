@@ -10,57 +10,46 @@
 
 
 <!-- Main Content-->
-<div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            <!-- Post preview-->
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                @foreach (var blog in Model)
-                {
-
-                    <div class="col">
-                        <div class="card">
-                            @if (blog.ImageData is not null)
-                            {
-                                <img class="card-img-top img-fluid" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
-                            }
-                        </div>
-                        <div class="card-body">
-                            <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
-                                <h2 class="post-title">@blog.BlogName</h2>
-                                <h3 class="post-subtitle">@blog.Description</h3>
-                            </a>
-                        </div>
-                        <div class="card-footer">
-                            <p class="post-meta">
-                                Created By Nicholas Payne on @blog.Created.ToString("MMM dd, yyyy")
-                            </p>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                }
-            </div>
-
-            <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">All Posts →</a></div>
-        </div>
+<div class="container border-top-dark">
+    <div>
+        <h2 class="fw-bold text-center" >Check out all the newest posts!</h2>
+        <p class="text-center">See all the newest posts from Nicholas Payne's full stack Developer Blog. From Database to C#, ASP.NET MVC, Mobile Development all the way to
+            front end design, get all the tips and trick I have to offer!</p>
     </div>
-</div>
-
-<div class="container">
-    <div class="d-flex justify-content-center">
-        @*Now I can Start building out the paging mechanism*@
-        <div class="row">
-            <div class="col h3">
+    <div class="mt-3 card-group h-100">
+        <!-- Post preview-->
+        @foreach (var blog in Model)
+        {
+            <div class="card border-dark border-start-dark mx-2">
+                @if (blog.ImageData is not null)
+                {
+                    <img class="card-img-top img-fluid" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
+                }
+                <div class="card-body">
+                    <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
+                        <h2 class="post-title d-flex justify-content-center">@blog.BlogName</h2>
+                        <p class="post-subtitle fw-bold ">@blog.Description</p>
+                    </a>
+                </div>
+                <div class="card-footer">
+                    <p class="post-meta">
+                        Created By Nicholas Payne on @blog.Created.ToString("MMM dd, yyyy")
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Pager-->
+    <div class="d-flex justify-content-center my-4"><a class="btn btn-primary text-uppercase" href="#!">Old Posts →</a></div>
+    <!-- Divider-->
+    <hr class="my-4" />
+    @*Now I can Start building out the paging mechanism*@
+    <div class="ms-3">
+        <div class="row ms-5">
+            <div class="col-6 ms-5 h3 d-flex justify-content-end">
                 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
+            <div class="col-6 ms-4 d-flex justify-content-end">
                 @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum }),
                 new PagedListRenderOptions
                 {
@@ -71,3 +60,4 @@
         </div>
     </div>
 </div>
+
