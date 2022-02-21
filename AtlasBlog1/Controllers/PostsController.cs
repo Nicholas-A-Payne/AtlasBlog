@@ -24,7 +24,7 @@ namespace AtlasBlog1.Controllers
 
         public PostsController(ApplicationDbContext context,
                                 SlugService slugService,
-                                IImageService imageService,                               
+                                IImageService imageService,
                                 SearchService searchService)
         {
             _context = context;
@@ -35,60 +35,63 @@ namespace AtlasBlog1.Controllers
 
         // GET: Posts
 
-        public async Task<IActionResult> BlogChildIndex (int blogId)
+        public async Task<IActionResult> BlogChildIndex(int blogId)
         {
             var children = await _context.Posts.Include(b => b.Blog)
                                                             .Where(b => b.BlogId == blogId)
                                                             .ToListAsync();
             return View("Index", children);
-    }
-
-
-    public async Task<IActionResult> Index()
-    {
-        var applicationDbContext = _context.Posts.Include(p => p.Blog);
-        return View(await applicationDbContext.ToListAsync());
-    }
-
-    // GET: Posts/Details/5
-    public async Task<IActionResult> Details(string slug)
-    {
-        if (string.IsNullOrEmpty(slug))
-        {
-            return NotFound();
         }
 
-        var post = await _context.Posts
-            .Include(b => b.Blog)
-            .Include(c => c.Comments)
-            .ThenInclude(c => c.Author)
-            .FirstOrDefaultAsync(m => m.Slug == slug);
 
-
-        if (post == null)
+        public async Task<IActionResult> Index()
         {
-            return NotFound();
+            var applicationDbContext = _context.Posts.Include(p => p.Blog);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        return View(post);
-    }
-
-    // GET: Posts/Create
-    public IActionResult Create()
-    {
-        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName");
-        return View();
-    }
-
-    // POST: Posts/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,PostState,Body")] Post post, IFormFile imageFile)
-    {
-        if (ModelState.IsValid)
+        // GET: Posts/Details/5
+        public async Task<IActionResult> Details(string slug)
         {
+            if (string.IsNullOrEmpty(slug))
+            {
+                return NotFound();
+            }
+
+            var post = await _context.Posts
+                .Include(b => b.Blog)
+                .Include(c => c.Comments)
+                .ThenInclude(c => c.Author)
+                .FirstOrDefaultAsync(m => m.Slug == slug);
+
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
+
+        // GET: Posts/Create
+        public IActionResult Create()
+        {
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName");
+            ViewData["TagIds"] = new MultiSelectList(_context.Tags, "Id", "TagItem");
+            return View();
+        }
+
+        // POST: Posts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,PostState,Body")] Post post,
+                                                                                               IFormFile imageFile,
+                                                                                               List<int> tagIds)
+        {
+            if (ModelState.IsValid)
+            {
                 if (imageFile is not null)
                 {
 
@@ -98,74 +101,6 @@ namespace AtlasBlog1.Controllers
 
                 var slug = _slugService.UrlFriendly(post.Title, 100);
 
-            //Ensure the Slug is unique in the DB, if not than throw a custom error
-            var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
-
-            if (isUnipue)
-            {
-                post.Slug = slug;
-            }
-            else
-            {
-                ModelState.AddModelError("Title", "This title cannot be used (duplicate Slug)");
-                ModelState.AddModelError("", "Incorrect title");
-                ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
-                return View(post);
-            }
-
-            post.Created = DateTime.UtcNow;
-
-
-            _context.Add(post);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
-        return View(post);
-    }
-
-    // GET: Posts/Edit/5
-    [Authorize(Roles = "Administrator")]
-    public async Task<IActionResult> Edit(int? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var post = await _context.Posts.FindAsync(id);
-        if (post == null)
-        {
-            return NotFound();
-        }
-        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
-        return View(post);
-    }
-
-    // POST: Posts/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,Abstract,PostState,Body,Created")] Post post, IFormFile imageFile)
-    {
-        if (id != post.Id)
-        {
-            return NotFound();
-        }
-
-        if (ModelState.IsValid)
-        {
-                if (imageFile is not null)
-                {
-
-                    post.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
-                    post.ImageType = imageFile.ContentType;
-                }
-
-                var slug = _slugService.UrlFriendly(post.Title, 100);
-            if (post.Slug != slug)
-            {
                 //Ensure the Slug is unique in the DB, if not than throw a custom error
                 var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
 
@@ -180,31 +115,132 @@ namespace AtlasBlog1.Controllers
                     ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
                     return View(post);
                 }
+
+                //CHeck for tags to add
+                if (tagIds.Count > 0)
+                {
+                    var tag = _context.Tags;
+                    foreach (var tagId in tagIds)
+                    {
+                        //I expect this line of code to add records into the PostTagsTable
+                        post.Tags.Add(await tag.FindAsync(tagId));
+                    }
+                }
+
+                post.Created = DateTime.UtcNow;
+
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+            return View(post);
+        }
+
+        // GET: Posts/Edit/5
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
             }
 
-            try
+            var post = await _context.Posts
+                                     .Include("Tags")
+                                     .FirstOrDefaultAsync(b => b.Id == id);
+
+            var tagIds = await post.Tags.Select(b => b.Id).ToListAsync();
+            if (post == null)
             {
-                post.Updated = DateTime.UtcNow;
-                post.Created = DateTime.SpecifyKind(post.Created, DateTimeKind.Utc);
-                _context.Update(post);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(post.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+            ViewData["TagIds"] = new MultiSelectList(_context.Tags, "Id", "TagItem", tagIds);
+            return View(post);
         }
-        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
-        return View(post);
-    }
+
+        // POST: Posts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Slug,Abstract,PostState,Body,Created")] Post post,
+                                                                                                                     IFormFile imageFile,
+                                                                                                                     List<int> tagIds)
+        {
+            if (id != post.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (imageFile is not null)
+                {
+                    post.ImageData = await _imageService.ConvertFileToByteArrayAsync(imageFile);
+                    post.ImageType = imageFile.ContentType;
+                }
+
+                var slug = _slugService.UrlFriendly(post.Title, 100);
+                if (post.Slug != slug)
+                {
+                    //Ensure the Slug is unique in the DB, if not than throw a custom error
+                    var isUnipue = !_context.Posts.Any(b => b.Slug == slug);
+
+                    if (isUnipue)
+                    {
+                        post.Slug = slug;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Title", "This title cannot be used (duplicate Slug)");
+                        ModelState.AddModelError("", "Incorrect title");
+                        ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+                        return View(post);
+                    }
+                }
+
+                try
+                {
+                    post.Updated = DateTime.UtcNow;
+                    post.Created = DateTime.SpecifyKind(post.Created, DateTimeKind.Utc);
+                    _context.Update(post);
+                    await _context.SaveChangesAsync();
+
+                    var currentPost = await _context.Posts
+                                                       .Include("Tags")
+                                                       .FirstOrDefaultAsync(b => b.Id == post.Id);
+                    currentPost.Tags.Clear();
+
+                    var tags = _context.Tags;
+
+                    if (tagIds.Count > 0)
+                    {
+                        foreach (var tagId in tagIds)
+                        {
+                            post.Tags.Add(await tags.FindAsync(tagId));
+                        }
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PostExists(post.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
+            ViewData["TagIds"] = new MultiSelectList(_context.Tags, "Id", "Text", tagIds);
+            return View(post);
+        }
 
         [AllowAnonymous]
         public async Task<IActionResult> SearchIndex(int? pageNum, string SearchItem)
@@ -221,40 +257,40 @@ namespace AtlasBlog1.Controllers
         }
 
 
-    // GET: Posts/Delete/5
-    [Authorize(Roles = "Administrator")]
-    public async Task<IActionResult> Delete(int? id)
-    {
-        if (id == null)
+        // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Delete(int? id)
         {
-            return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _context.Posts
+                .Include(p => p.Blog)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
         }
 
-        var post = await _context.Posts
-            .Include(p => p.Blog)
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (post == null)
+        // POST: Posts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            return NotFound();
+            var post = await _context.Posts.FindAsync(id);
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
-        return View(post);
+        private bool PostExists(int id)
+        {
+            return _context.Posts.Any(e => e.Id == id);
+        }
     }
-
-    // POST: Posts/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        var post = await _context.Posts.FindAsync(id);
-        _context.Posts.Remove(post);
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
-
-    private bool PostExists(int id)
-    {
-        return _context.Posts.Any(e => e.Id == id);
-    }
-}
 }

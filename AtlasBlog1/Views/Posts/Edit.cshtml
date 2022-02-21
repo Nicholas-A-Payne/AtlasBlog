@@ -54,6 +54,14 @@
 
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>
+
+            <div class="form-group" >
+                <label class="control-label" >Tag(s)</label>
+                
+                @*Here is where a multiSelectList will appear*@
+                <select class="form-select" id="TagIds" name="TagIds" asp-items="@ViewBag.TagIds" multiple></select>
+
+            </div>
             
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

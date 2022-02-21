@@ -14,6 +14,8 @@ namespace AtlasBlog1.Data
         public DbSet<Blog> Blogs { get; set; } = default!;
         public DbSet<Post> Posts { get; set; } = default!;
         public DbSet<Comment> Comment { get; set; } = default!;
+        public DbSet<Tag> Tags { get; set; } = default!;
+
 
 
 

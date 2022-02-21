@@ -50,7 +50,17 @@
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" >
+                <label class="control-label" >Tag(s)</label>
+                @*Here is where a multiSelectList will appear*@
+                <select class="form-select" id="TagIds" name="TagIds" asp-items="@ViewBag.TagIds" multiple></select>
+            </div>
+            
+            <div>
+                <button type="button" class="btn btn-sm btn-primary btn-outline-dark w-100 fw-bold" data-bs-target="#addNewTag" data-bs-toggle="modal" >New Tag</button>
+            </div>
+
+            <div class="form-group mt-2">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -60,6 +70,40 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+@*Modal section Yo*@
+<div class="modal fade" id="addNewTag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                @*Add In a form for making a new tag*@
+                <form asp-action="Create" asp-controller="Tags" >
+                    <div class="form-group m-2" >
+                        <label class="form-label fw-bold" for="tagItem">New Tag</label>
+                        <input name="TagItem" id="tagItem" class="form-control" />
+                    </div>
+                    <div class="form-group m-1" >
+                        <label class="form-label fw-bold" for="tagDescript">Description</label>
+                        <textarea name="TagDescript" id="tagDescript" class="form-control" rows=5 ></textarea>
+                    </div>
+                    <div class="form-group" >
+                        <button type="submit" class="btn btn-primary btn-sm w-100" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     @{
