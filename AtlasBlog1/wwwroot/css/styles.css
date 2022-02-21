@@ -4978,8 +4978,8 @@ textarea.form-control-lg {
     position: relative;
     display: block;
     color: #212529;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+    background-color: var(--NP-primary-color);
+    border: 1px solid var(--NP-secondary-color);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -4991,15 +4991,15 @@ textarea.form-control-lg {
 
 .page-link:hover {
     z-index: 2;
-    color: #0085A1;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
+    color: var(--NP-secondary-color);
+    background-color: var(--NP-light-color);
+    border-color: var(--NP-primary-color);
 }
 
 .page-link:focus {
     z-index: 3;
-    color: #0085A1;
-    background-color: #e9ecef;
+    color: var(--NP-primary-color);
+    background-color: var(--NP-primary-color);
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(0, 133, 161, 0.25);
 }
@@ -5011,15 +5011,15 @@ textarea.form-control-lg {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: var(--NP-primary-color);
-    border-color: var(--NP-secondary-color);
+    background-color: var(--NP-primary-color) !important;
+    border-color: var(--NP-secondary-color) !important;
 }
 
 .page-item.disabled .page-link {
     color: #6c757d;
     pointer-events: none;
     background-color: #fff;
-    border-color: #dee2e6;
+    border-color: var(--NP-secondary-color);
 }
 
 .page-link {
