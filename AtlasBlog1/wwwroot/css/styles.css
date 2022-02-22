@@ -249,7 +249,7 @@ a {
 }
 
     a:hover {
-        color: var(--NP-primary-color);
+        color: #383a3d;
     }
 
     a:not([href]):not([class]), a:not([href]):not([class]):hover {
