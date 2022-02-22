@@ -146,6 +146,8 @@ namespace AtlasBlog1.Controllers
                 return NotFound();
             }
 
+            
+
             var post = await _context.Posts
                                      .Include("Tags")
                                      .FirstOrDefaultAsync(b => b.Id == id);
@@ -155,6 +157,7 @@ namespace AtlasBlog1.Controllers
             {
                 return NotFound();
             }
+
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
             ViewData["TagIds"] = new MultiSelectList(_context.Tags, "Id", "TagItem", tagIds);
             return View(post);

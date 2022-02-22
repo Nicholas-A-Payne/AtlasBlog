@@ -274,4 +274,3 @@ C:\Users\nicho\source\repos\AtlasBlog1\AtlasBlog1\obj\Debug\net6.0\AtlasBlog1.dl
 C:\Users\nicho\source\repos\AtlasBlog1\AtlasBlog1\obj\Debug\net6.0\ref\AtlasBlog1.dll
 C:\Users\nicho\source\repos\AtlasBlog1\AtlasBlog1\obj\Debug\net6.0\AtlasBlog1.pdb
 C:\Users\nicho\source\repos\AtlasBlog1\AtlasBlog1\obj\Debug\net6.0\AtlasBlog1.genruntimeconfig.cache
-C:\Users\nicho\source\repos\AtlasBlog1\AtlasBlog1\obj\Debug\net6.0\AtlasBlog1.csproj.AssemblyReference.cache
