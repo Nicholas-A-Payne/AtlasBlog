@@ -27,9 +27,9 @@
                 }
                 <div class="card-body">
                     <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
-                        <h2 class="post-title d-flex justify-content-center">@blog.BlogName</h2>
+                        <h2 class="post-title d-flex justify-content-center text-break">@blog.BlogName</h2>
                         <hr/>
-                        <p class="post-subtitle fw-bold ">@blog.Description</p>
+                        <p class="post-subtitle fw-bold text-break">@blog.Description</p>
                     </a>
                 </div>
                 <div class="card-footer">

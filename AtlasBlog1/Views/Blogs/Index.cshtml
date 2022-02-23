@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="card-body h-30">
-                    <div class="card-title d-flex justify-content-center"> <h3>@Html.DisplayFor(modelItem => item.BlogName)</h3></div>
-                    <div class="card-text d-flex justify-content-center">@Html.DisplayFor(modelItem => item.Description)</div>
+                    <div class="card-title d-flex justify-content-center text-break"> <h3>@Html.DisplayFor(modelItem => item.BlogName)</h3></div>
+                    <div class="card-text d-flex justify-content-center text-break">@Html.DisplayFor(modelItem => item.Description)</div>
                 </div>
                 <div class="card-footer border-dark">
                     <div class="row">
@@ -45,7 +45,7 @@
                                 <a class="btn btn-dark btn-outline-dark mx-2" asp-action="Edit" asp-route-id="@item.Id">EDIT</a>
                             }
 
-                            <a class="btn btn-sm btn-primary btn-outline-dark w-100 mx-2" asp-action="Details" asp-route-slug="@item.Id">DETAILS</a>
+                            <a class="btn btn-primary btn-outline-dark w-100 mx-2" asp-action="Details" asp-route-slug="@item.Id">DETAILS</a>
 
                             @if (User.IsInRole("Administrator"))
                             {
