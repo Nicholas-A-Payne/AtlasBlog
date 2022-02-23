@@ -9,6 +9,7 @@
 
 <h1>Index</h1>
 
+
 @if (User.IsInRole("Administrator"))
 {
     <p>
@@ -20,7 +21,6 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var item in Model)
         {
-
             <div class="card border border-dark">
                 <div class="">
                     <img class="card-img-top h-60" src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />

@@ -11,68 +11,31 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Abstract)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Abstract)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostState)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostState)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Updated)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Updated)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Blog)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Blog.BlogName)
-        </dd>
-    </dl>
+
+<div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="fw-bold fst-italic text-center">@Html.DisplayFor(model => model.Blog.BlogName)</h4>
+            </div>
+            <div class="col-12">
+                <h1 class="fw-bolder text-center">@Html.DisplayFor(model => model.Title)</h1>
+            </div>
+            <div class="col-12">
+                <h5 class="fw-bold text-center">@Html.DisplayFor(model => model.Abstract)</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center">@Html.DisplayFor(model => model.Body)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">@Html.DisplayFor(model => model.PostState)</div>
+            <div class="col-12 text-center">Created: @Html.DisplayFor(model => model.Created)</div>
+        </div>
 </div>
+
 
 <hr class="border-bottom border-dark" />
 
@@ -297,7 +260,7 @@ else
 <script>
     document.querySelectorAll("button.btnModModal").forEach(btn => {
         btn.addEventListener("click", function(){
-            
+
             document.getElementById('modalModerateCommentId').value = this.getAttribute('data-commentId');
 
             let parent = this.closest("div.targetParent");
