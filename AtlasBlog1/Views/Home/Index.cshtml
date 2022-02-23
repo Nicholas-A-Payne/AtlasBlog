@@ -16,11 +16,11 @@
         <p class="text-center">See all the newest posts from Nicholas Payne's full stack Developer Blog. From Database to C#, ASP.NET MVC, Mobile Development all the way to
             front end design, get all the tips and trick I have to offer!</p>
     </div>
-    <div class="mt-3 card-group h-100">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         <!-- Post preview-->
         @foreach (var blog in Model)
         {
-            <div class="card border-dark border-start-dark mx-2">
+            <div class="card h-100 border-dark border-start-dark">
                 @if (blog.ImageData is not null)
                 {
                     <img class="card-img-top img-fluid" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
