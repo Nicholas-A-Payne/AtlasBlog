@@ -15,40 +15,44 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
-<div class="row">
-    <div class="mt-3 card-group">
-        @foreach (var item in Model)
-        {
-            <div class="col-12 col-md-4 mb-5">
-                <div class="card border-dark h-50">
-                    <div class="">
-                        <img class="card-img-top h-60" src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />
-                    </div>
 
-                    <div class="card-body h-30">
-                        <div class="card-title d-flex justify-content-center"> <h3>@Html.DisplayFor(modelItem => item.Title)</h3></div>
-                        <div class="card-text d-flex justify-content-center">@Html.DisplayFor(modelItem => item.Abstract)</div>
-                    </div>
-                    <div class="card-footer border-dark">
-                        <div class="row">
-                            <div class="d-flex justify-content-center">
-                                @if (User.IsInRole("Administrator"))
-                                {
-                                    <a class="mx-2" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                }
-                                ||
-                                <a class="mx-2" asp-action="Details" asp-route-slug="@item.Slug">Details</a>
-                                ||
-                                @if (User.IsInRole("Administrator"))
-                                {
-                                    <a class="mx-2" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                }
+    <div class="row">
+        <div class="mt-3 card-group">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-4 mb-5">
+                    <div class="card border-dark h-50">
+                        <div class="">
+                            <img class="card-img-top h-60" src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />
+                        </div>
+
+                        <div class="card-body h-30">
+                            <div class="card-title d-flex justify-content-center"> <h3>@Html.DisplayFor(modelItem => item.Title)</h3></div>
+                            <div class="card-text d-flex justify-content-center">@Html.DisplayFor(modelItem => item.Abstract)</div>
+                        </div>
+                        <div class="card-footer border-dark">
+                            <div class="row">
+                                <div class="d-flex justify-content-center">
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <a class="btn btn-dark btn-outline-dark mx-2" asp-action="Edit" asp-route-id="@item.Id">EDIT</a>
+                                    }
+
+                                    <a class="btn btn-primary btn-outline-dark mx-2 w-100" asp-action="Details" asp-route-slug="@item.Slug">READ POST</a>
+
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+
+                                        <a class="btn btn-danger btnbtn-outline-dark mx-2" asp-action="Delete" asp-route-id="@item.Id">DELETE</a>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>        }
+            }
+        </div>
     </div>
-</div>
+
 
