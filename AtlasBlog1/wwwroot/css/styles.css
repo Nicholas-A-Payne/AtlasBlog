@@ -68,6 +68,11 @@
     --NP-secondary-color: #8f028f;
 }
 
+.postTitle{
+    font-family: var(--bs-body-font-family);
+}
+
+
 *,
 *::before,
 *::after {
@@ -105,7 +110,7 @@ hr {
         height: 1px;
     }
 
-h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+h6, .h6, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

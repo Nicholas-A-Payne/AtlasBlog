@@ -19,15 +19,16 @@
                 <h4 class="fw-bold fst-italic text-center">@Html.DisplayFor(model => model.Blog.BlogName)</h4>
             </div>
             <div class="col-12">
-                <h1 class="fw-bolder text-center">@Html.DisplayFor(model => model.Title)</h1>
+                <h1 class="fw-bolder text-center postTitle">@Html.DisplayFor(model => model.Title)</h1>
             </div>
             <div class="col-12">
-                <h5 class="fw-bold text-center">@Html.DisplayFor(model => model.Abstract)</h5>
+                <h5 class="text-center">@Html.DisplayFor(model => model.Abstract)</h5>
             </div>
         </div>
+        <hr/>
         <div class="row">
             <div class="col-12">
-                <p class="text-center">@Html.DisplayFor(model => model.Body)</p>
+                <p class="text-center body">@Html.DisplayFor(model => model.Body)</p>
             </div>
         </div>
         <div class="row">
