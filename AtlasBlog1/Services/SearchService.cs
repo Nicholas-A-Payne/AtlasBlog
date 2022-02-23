@@ -18,7 +18,7 @@ namespace AtlasBlog1.Services
 
             var resultSet = _dbContext
                             .Posts
-                            .Where(b => b.PostState == Enums.PostState.ProducationReady && 
+                            .Where(b => b.PostState == Enums.PostState.ProductionReady && 
                                   !b.IsDeleted).AsQueryable();
 
             //If they supplied a Search Item, I will look for it insdie the resultset

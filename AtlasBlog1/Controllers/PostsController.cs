@@ -60,6 +60,7 @@ namespace AtlasBlog1.Controllers
 
             var post = await _context.Posts
                 .Include(b => b.Blog)
+                .Include(p => p.Tags)
                 .Include(c => c.Comments)
                 .ThenInclude(c => c.Author)
                 .FirstOrDefaultAsync(m => m.Slug == slug);
@@ -152,11 +153,13 @@ namespace AtlasBlog1.Controllers
                                      .Include("Tags")
                                      .FirstOrDefaultAsync(b => b.Id == id);
 
-            var tagIds = await post.Tags.Select(b => b.Id).ToListAsync();
+            
             if (post == null)
             {
                 return NotFound();
             }
+
+            var tagIds = await post.Tags.Select(b => b.Id).ToListAsync();
 
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "BlogName", post.BlogId);
             ViewData["TagIds"] = new MultiSelectList(_context.Tags, "Id", "TagItem", tagIds);
@@ -211,10 +214,12 @@ namespace AtlasBlog1.Controllers
                     _context.Update(post);
                     await _context.SaveChangesAsync();
 
-                    var currentPost = await _context.Posts
-                                                       .Include("Tags")
-                                                       .FirstOrDefaultAsync(b => b.Id == post.Id);
-                    currentPost.Tags.Clear();
+                    ////Tag Management
+                    var currentBlogPost = await _context.Posts
+                                                        .Include("Tags")
+                                                        .FirstOrDefaultAsync(b => b.Id == post.Id);
+
+                    currentBlogPost.Tags.Clear();
 
                     var tags = _context.Tags;
 
@@ -225,6 +230,8 @@ namespace AtlasBlog1.Controllers
                             post.Tags.Add(await tags.FindAsync(tagId));
                         }
                     }
+
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {

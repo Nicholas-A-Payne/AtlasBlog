@@ -67,26 +67,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Comments/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Comments/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Comments/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Comments/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Comments/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -125,26 +105,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Tags/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Tags/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnc1xEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Tags/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnc1xEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Tags/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnc1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/Tags/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nicho/source/repos/AtlasBlog1/AtlasBlog1/Views/_ViewImports.cshtml]

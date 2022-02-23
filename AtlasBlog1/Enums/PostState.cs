@@ -2,7 +2,7 @@
 {
     public enum PostState
     {
-        ProducationReady,
+        ProductionReady,
         InDevelopment,
         PreviewReady
     }

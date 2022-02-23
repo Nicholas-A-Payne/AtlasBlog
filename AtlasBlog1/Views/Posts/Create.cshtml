@@ -5,105 +5,107 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@if (User.IsInRole("Administrator"))
+{
+    <h1>Create</h1>
 
-<h4>Post</h4>
+    <h4>Post</h4>
 
-<div class="row">
-    <div class="col-md-8">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group m-1">
-                <label asp-for="BlogId" class="control-label"></label>
-                <select asp-for="BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
-            </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group m-1">
+                    <label asp-for="BlogId" class="control-label"></label>
+                    <select asp-for="BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
+                </div>
 
-            <div class="form-group m-1">
-                <label asp-for="ImageData" class="control-label"></label>
-                <input type="file" name="ImageFile" class="form-control" />
-                <span asp-validation-for="ImageData" class="text-danger"></span>
-            </div>
+                <div class="form-group m-1">
+                    <label asp-for="ImageData" class="control-label"></label>
+                    <input type="file" name="ImageFile" class="form-control" />
+                    <span asp-validation-for="ImageData" class="text-danger"></span>
+                </div>
 
-            <div class="form-group m-1">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
+                <div class="form-group m-1">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
 
-            <div class="form-group m-1">
-                <label asp-for="Abstract" class="control-label"></label>
-                <input asp-for="Abstract" class="form-control" />
-                <span asp-validation-for="Abstract" class="text-danger"></span>
-            </div>
+                <div class="form-group m-1">
+                    <label asp-for="Abstract" class="control-label"></label>
+                    <input asp-for="Abstract" class="form-control" />
+                    <span asp-validation-for="Abstract" class="text-danger"></span>
+                </div>
 
-            <div class="form-group m-1">
-                <label asp-for="PostState" class="control-label"></label>
-                <select asp-for="PostState" class="form-control" asp-items="@Html.GetEnumSelectList<PostState>()"></select>
-                <span asp-validation-for="PostState" class="text-danger"></span>
-            </div>
+                <div class="form-group m-1">
+                    <label asp-for="PostState" class="control-label"></label>
+                    <select asp-for="PostState" class="form-control" asp-items="@Html.GetEnumSelectList<PostState>()"></select>
+                    <span asp-validation-for="PostState" class="text-danger"></span>
+                </div>
 
-            <div class="form-group m-2">
-                <label asp-for="Body" class="control-label"></label>
+                <div class="form-group m-2">
+                    <label asp-for="Body" class="control-label"></label>
 
-                <textarea asp-for="Body" id="editor" rows=10 class="form-control" ></textarea>
+                    <textarea asp-for="Body" id="editor" rows=10 class="form-control"></textarea>
 
-                <span asp-validation-for="Body" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="Body" class="text-danger"></span>
+                </div>
 
-            <div class="form-group m-1" >
-                <label class="control-label" >Tag(s)</label>
-                @*Here is where a multiSelectList will appear*@
-                <select class="form-select" id="TagIds" name="TagIds" asp-items="@ViewBag.TagIds" multiple></select>
-            </div>
-            
-            <div>
-                <button type="button" class="btn btn-sm btn-primary btn-outline-dark w-100 fw-bold" data-bs-target="#addNewTag" data-bs-toggle="modal" >New Tag</button>
-            </div>
+                <div class="form-group m-1">
+                    <label class="control-label">Tag(s)</label>
+                    @*Here is where a multiSelectList will appear*@
+                    <select class="form-select" id="TagIds" name="TagIds" asp-items="@ViewBag.TagIds" multiple></select>
+                </div>
 
-            <div class="form-group mt-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div>
+                    <button type="button" class="btn btn-sm btn-primary btn-outline-dark w-100 fw-bold" data-bs-target="#addNewTag" data-bs-toggle="modal">New Tag</button>
+                </div>
+
+                <div class="form-group mt-2">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@*Modal section Yo*@
-<div class="modal fade" id="addNewTag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+    @*Modal section Yo*@
+    <div class="modal fade" id="addNewTag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-                @*Add In a form for making a new tag*@
-                <form asp-action="Create" asp-controller="Tags" >
-                    <div class="form-group m-2" >
-                        <label class="form-label fw-bold" for="tagItem">New Tag</label>
-                        <input name="TagItem" id="tagItem" class="form-control" />
-                    </div>
-                    <div class="form-group m-1" >
-                        <label class="form-label fw-bold" for="tagDescript">Description</label>
-                        <textarea name="TagDescript" id="tagDescript" class="form-control" rows=5 ></textarea>
-                    </div>
-                    <div class="form-group" >
-                        <button type="submit" class="btn btn-primary btn-sm w-100" data-bs-dismiss="modal">Submit</button>
-                    </div>
-                </form>
+                    @*Add In a form for making a new tag*@
+                    <form asp-action="Create" asp-controller="Tags">
+                        <div class="form-group m-2">
+                            <label class="form-label fw-bold" for="tagItem">New Tag</label>
+                            <input name="TagItem" id="tagItem" class="form-control" />
+                        </div>
+                        <div class="form-group m-1">
+                            <label class="form-label fw-bold" for="tagDescript">Description</label>
+                            <textarea name="TagDescript" id="tagDescript" class="form-control" rows=5></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-sm w-100" data-bs-dismiss="modal">Submit</button>
+                        </div>
+                    </form>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}
 
 @section Scripts {
     @{
