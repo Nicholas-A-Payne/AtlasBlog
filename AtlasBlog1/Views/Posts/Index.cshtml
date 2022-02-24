@@ -7,58 +7,59 @@
     ViewData["Title"] = "Index";
 }
 
+@if (User.IsInRole("Administrator"))
+{
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 d-flex justify-content-center"><h1 class="fw-bolder blogTitlePage">All Posts</h1></div>
-        <div class="col-12 d-flex justify-content-center">
-            @if (User.IsInRole("Administrator"))
-            {
-                <p>
-                    <a class="btn btn-primary btn-lg btn-outline-dark " asp-action="Create">Create New</a>
-                </p>
-            }
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center"><h1 class="fw-bolder blogTitlePage">All Posts</h1></div>
+            <div class="col-12 d-flex justify-content-center">
+                @if (User.IsInRole("Administrator"))
+                {
+                    <p>
+                        <a class="btn btn-primary btn-lg btn-outline-dark " asp-action="Create">Create New</a>
+                    </p>
+                }
+            </div>
         </div>
     </div>
-</div>
 
-<hr class="border-dark" />
+    <hr class="border-dark" />
 
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var item in Model)
-        {
-            <div class="card border border-dark">
-                <div class="">
-                    <img class="card-img-top h-60" src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />
-                </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="card border border-dark">
+                    <div class="">
+                        <img class="card-img-top h-60" src=@_imageService.ConvertByteArrayToFile(item.ImageData, item.ImageType) />
+                    </div>
 
-                <div class="card-body h-30">
-                    <div class="card-title d-flex justify-content-center text-break"> <h3>@Html.DisplayFor(modelItem => item.Title)</h3></div>
-                    <div class="card-text d-flex justify-content-center text-break">@Html.DisplayFor(modelItem => item.Abstract)</div>
-                </div>
-                <div class="card-footer border-dark">
-                    <div class="row">
-                        <div class="d-flex justify-content-center">
-                            @if (User.IsInRole("Administrator"))
-                            {
-                                <a class="btn btn-dark btn-outline-dark mx-2" asp-action="Edit" asp-route-id="@item.Id">EDIT</a>
-                            }
+                    <div class="card-body h-30">
+                        <div class="card-title d-flex justify-content-center text-break h-50"> <h3>@Html.DisplayFor(modelItem => item.Title)</h3></div>
+                        <div class="card-text d-flex justify-content-center text-break h-50 mt-1">@Html.DisplayFor(modelItem => item.Abstract)</div>
+                    </div>
+                    <div class="card-footer border-dark">
+                        <div class="row">
+                            <div class="d-flex justify-content-center">
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <a class="btn btn-dark btn-outline-dark mx-2" asp-action="Edit" asp-route-id="@item.Id">EDIT</a>
+                                }
 
-                            <a class="btn btn-primary btn-outline-dark mx-2 w-100" asp-action="Details" asp-route-slug="@item.Slug">READ POST</a>
+                                <a class="btn btn-primary btn-outline-dark mx-2 w-100" asp-action="Details" asp-route-slug="@item.Slug">READ</a>
 
-                            @if (User.IsInRole("Administrator"))
-                            {
+                                @if (User.IsInRole("Administrator"))
+                                {
 
-                                <a class="btn btn-danger btnbtn-outline-dark mx-2" asp-action="Delete" asp-route-id="@item.Id">DELETE</a>
-                            }
+                                    <a class="btn btn-danger btnbtn-outline-dark mx-2" asp-action="Delete" asp-route-id="@item.Id">DELETE</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
-
+}
 

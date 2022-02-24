@@ -68,8 +68,13 @@
     --NP-secondary-color: #8f028f;
 }
 
-.postTitle{
+.postTitle {
     font-family: var(--bs-body-font-family);
+}
+
+.cardItem {
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 

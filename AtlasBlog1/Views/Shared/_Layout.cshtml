@@ -28,9 +28,13 @@
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4 text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4 text-light" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                    </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4 text-light" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                        </li>
+                    }
+
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4 text-light" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                     </li>
@@ -50,10 +54,10 @@
                         <h1 class="">Developer Blog</h1>
                         <span class="subheading">A Blog site made by Nicholas Payne</span>
                         <form class="mt-5" asp-action="SearchIndex" asp-controller="Posts">
-                            <div class="input-group mt-5" >
+                            <div class="input-group mt-5">
                                 <input type="text" name="SearchItem" class="form-control border-dark" />
                                 <div>
-                                    <button type="submit" class="btn btn-primary border-dark w-100" >SEARCH</button>
+                                    <button type="submit" class="btn btn-primary border-dark w-100">SEARCH</button>
                                 </div>
                             </div>
                         </form>
@@ -70,7 +74,7 @@
         </main>
     </div>
 
-   
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -78,7 +82,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/scripts.js"></script>
-     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>

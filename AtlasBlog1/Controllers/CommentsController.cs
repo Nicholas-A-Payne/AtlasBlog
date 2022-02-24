@@ -143,8 +143,8 @@ namespace AtlasBlog1.Controllers
             {
                 //var commentSnapShot = await _context.Comments.FindAsync(comment.Id);
                 commentSnapShot = await _context.Comment
-                                                    .Include(c => c.Post)
-                                                    .FirstOrDefaultAsync(c => c.Id == comment.Id);
+                                                .Include(c => c.Post)
+                                                .FirstOrDefaultAsync(c => c.Id == comment.Id);
 
                 if (commentSnapShot == null)
                 {

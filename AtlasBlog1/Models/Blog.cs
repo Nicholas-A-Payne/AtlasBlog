@@ -8,7 +8,7 @@ namespace AtlasBlog1.Models
 
         [Required]
         [Display(Name ="Blog Name")]
-        [StringLength(100, ErrorMessage = "The {0} must be at most {1} and at least {2} characters long", MinimumLength = 5)]
+        [StringLength(20, ErrorMessage = "The {0} must be at most {1} and at least {2} characters long", MinimumLength = 5)]
         public string BlogName { get; set; } = "";
 
         [Required]

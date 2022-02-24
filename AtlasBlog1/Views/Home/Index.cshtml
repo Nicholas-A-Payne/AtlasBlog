@@ -22,16 +22,16 @@
         <!-- Post preview-->
         @foreach (var blog in Model)
         {
-            <div class="card h-100 border-dark border-start-dark">
+            <div class="card border-dark border-start-dark">
                 @if (blog.ImageData is not null)
                 {
-                    <img class="card-img-top img-fluid" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
+                    <img class="card-img-top img-fluid h-50" src="@_imageService.ConvertByteArrayToFile(blog.ImageData, blog.ImageType)">
                 }
                 <div class="card-body">
                     <a asp-action="BlogChildIndex" asp-controller="Posts" asp-route-blogId="@blog.Id">
-                        <h2 class="post-title d-flex justify-content-center text-break">@blog.BlogName</h2>
+                        <h2 class="post-title cardItems d-flex justify-content-center h-20">@blog.BlogName</h2>
                         <hr />
-                        <p class="post-subtitle fw-bold text-break">@blog.Description</p>
+                        <p class="post-subtitle fw-bold h-50">@blog.Description</p>
                     </a>
                 </div>
                 <div class="card-footer">
