@@ -153,7 +153,6 @@ namespace AtlasBlog1.Controllers
                                      .Include("Tags")
                                      .FirstOrDefaultAsync(b => b.Id == id);
 
-            
             if (post == null)
             {
                 return NotFound();

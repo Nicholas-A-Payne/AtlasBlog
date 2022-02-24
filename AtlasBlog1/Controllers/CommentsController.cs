@@ -67,7 +67,7 @@ namespace AtlasBlog1.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("Details", "Posts", new { slug }, "CommentSection" );
+            return RedirectToAction("Details", "Posts", new { slug }, "CommentSection");
         }
 
         // GET: Comments/Edit/5
@@ -100,30 +100,34 @@ namespace AtlasBlog1.Controllers
                 return NotFound();
             }
 
-                try
+            try
+            {
+                
+                var commentSnapShot = await _context.Comment.FindAsync(comment.Id);
+                if (commentSnapShot == null)
                 {
-                   var commentSnapShot = await _context.Comment.FindAsync(comment.Id);
-                    if(commentSnapShot == null)
-                    {
-                        return NotFound();
-                    }
+                    return NotFound();
+                }
+                
+                commentSnapShot.UpdatedDate = DateTime.UtcNow;
+                commentSnapShot.CommentBody = comment.CommentBody;
+                await _context.SaveChangesAsync();
 
-                    commentSnapShot.CommentBody = comment.CommentBody;
-                    commentSnapShot.UpdatedDate = DateTime.UtcNow;
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CommentExists(comment.Id))
                 {
-                    if (!CommentExists(comment.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
-            
+
+                else
+                {
+                    throw;
+                }
+            }
+
             return RedirectToAction("Details", "Posts", new { slug }, "CommentSection");
         }
 
@@ -200,7 +204,7 @@ namespace AtlasBlog1.Controllers
             var comment = await _context.Comment.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
             _context.Comment.Remove(comment);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "Posts", new {slug = comment.Post.Slug }, "CommentSection");
+            return RedirectToAction("Details", "Posts", new { slug = comment.Post.Slug }, "CommentSection");
         }
 
         private bool CommentExists(int id)
