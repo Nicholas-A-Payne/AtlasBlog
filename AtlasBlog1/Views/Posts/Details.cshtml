@@ -14,30 +14,34 @@
 
 
 <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h4 class="fw-bold fst-italic text-center">@Html.DisplayFor(model => model.Blog.BlogName)</h4>
-            </div>
-            <div class="col-12">
-                <h1 class="fw-bolder text-center postTitle">@Html.DisplayFor(model => model.Title)</h1>
-            </div>
-            <div class="col-12">
-                <h5 class="text-center">@Html.DisplayFor(model => model.Abstract)</h5>
-            </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="fw-bold fst-italic text-center">@Html.DisplayFor(model => model.Blog.BlogName)</h4>
         </div>
-        <hr/>
-        <div class="row">
-            <div class="col-12">
-                <p class="text-center body">@Html.DisplayFor(model => model.Body)</p>
-            </div>
+        <div class="col-12">
+            <h1 class="fw-bolder text-center postTitle">@Html.DisplayFor(model => model.Title)</h1>
         </div>
-        <div class="row">
-            <div class="col-12 text-center">@Html.DisplayFor(model => model.PostState)</div>
-            <div class="col-12 text-center">Created: @Html.DisplayFor(model => model.Created)</div>
-            <div class="col-12 text-center">
-                <span class="text-muted"> &copy; 2022 </span><span class="text-muted">Nicholas Payne </span>
-            </div>
+        <div class="col-12">
+            <h5 class="text-center">@Html.DisplayFor(model => model.Abstract)</h5>
         </div>
+    </div>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-12">
+            @if (Model.Body is not null)
+            {
+                <p class="text-center body">@Html.Raw(Model.Body)</p>
+            }
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-12 text-center">@Html.DisplayFor(model => model.PostState)</div>
+        <div class="col-12 text-center">Created: @Html.DisplayFor(model => model.Created)</div>
+        <div class="col-12 text-center">
+            <span class="text-muted"> &copy; 2022 </span><span class="text-muted">Nicholas Payne </span>
+        </div>
+    </div>
 </div>
 
 
