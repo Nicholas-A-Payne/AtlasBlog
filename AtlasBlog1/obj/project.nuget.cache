@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e+fINXbZa+enX1PY+CXg3Xm/GJkbhmPsmb7Sahlf2/WbiO9pc+z49WwJ1+jZe6R8U8iZciABdxbvt8X6+Kr0IA==",
+  "dgSpecHash": "gpuRz1q6snWeb84RlLQ9Dn0Ul1LR9WE09vvzDFXJ77nPvUmFzkxAvlSTmTTh7makFLzYF7sJ7nKBvjbcyd8KHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\AtlasBlog1.csproj",
   "expectedPackageFiles": [
@@ -69,6 +69,7 @@
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.net.stringtools\\1.0.0\\microsoft.net.stringtools.1.0.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.visualstudio.debugger.contracts\\17.2.0\\microsoft.visualstudio.debugger.contracts.17.2.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\6.0.2\\microsoft.visualstudio.web.codegeneration.6.0.2.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\6.0.2\\microsoft.visualstudio.web.codegeneration.core.6.0.2.nupkg.sha512",
@@ -111,6 +112,8 @@
     "C:\\Users\\nicho\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.0\\swashbuckle.aspnetcore.swagger.6.3.0.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.0\\swashbuckle.aspnetcore.swaggergen.6.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

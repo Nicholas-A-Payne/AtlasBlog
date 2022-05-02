@@ -78,6 +78,10 @@
               "target": "Package",
               "version": "[6.0.3, )"
             },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
             "X.PagedList.Mvc.Core": {
               "target": "Package",
               "version": "[8.1.0, )"

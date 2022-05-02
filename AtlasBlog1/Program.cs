@@ -5,6 +5,7 @@ using AtlasBlog1.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -21,6 +22,30 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.Re
     .AddDefaultTokenProviders()
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+//Register the SwaggerGen Service
+builder.Services.AddSwaggerGen(s =>
+{
+    OpenApiInfo openApiInfo = new()
+    {
+        Title = "Raven Blog API",
+        Version = "v1",
+        Description = "Candidate API for the Raven Blog",
+        Contact = new()
+        {
+            Name = "Nichoals Payne",
+            Url = new("PORFOLIO WEBSITE")
+        },
+        License = new()
+        {
+            Name = "Api Licence",
+            Url = new("WHo cares")
+        }
+    };
+
+    s.SwaggerDoc(openApiInfo.Version, openApiInfo);
+
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<DataService>();
@@ -63,6 +88,18 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+//Call on our configured Swagger service
+app.UseSwagger();
+app.UseSwagger(s =>
+{
+    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Atlas Blog API");
+
+    if (!app.Environment.IsDevelopment())
+    {
+        s.RoutePrefix = "";
+    }
+});
 
 app.MapControllerRoute(
     name: "detail",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Qr97/AFBZyUOZzrra0RHZagrwL/4Lub6/pMCPnx9gTU=",
+  "Hash": "BlcCRQ3oBRlYtjakmI9JlPk3EmveInqRCgG6lsFjXsw=",
   "Source": "AtlasBlog1",
   "BasePath": "_content/AtlasBlog1",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Img\\mountainBGPlaceHolder.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\Img\\Raven.png",
+      "SourceId": "AtlasBlog1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\",
+      "BasePath": "_content/AtlasBlog1",
+      "RelativePath": "Img/Raven.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Img\\Raven.png"
     },
     {
       "Identity": "C:\\Users\\nicho\\source\\repos\\AtlasBlog1\\AtlasBlog1\\wwwroot\\js\\scripts.js",
